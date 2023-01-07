@@ -59,4 +59,16 @@ function LexerState:end_range(start)
 	}
 end
 
+---@param start Position
+function LexerState:goto_start(start)
+	self.line = start.line
+	self.pos = start.character
+end
+
+---@param range Range
+---@return string
+function LexerState:get_range(range)
+	return self.code:sub(range.start.character, range["end"].character)
+end
+
 return LexerState
